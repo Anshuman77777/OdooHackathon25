@@ -16,6 +16,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Upload, X, Camera, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { createItem } from "@/apis/products";
 
 const categories = [
   "Tops", "Bottoms", "Dresses", "Outerwear", "Shoes", "Accessories", "Activewear", "Formal"
@@ -115,6 +116,8 @@ export default function AddItem() {
     e.preventDefault();
     // Here you would submit the form data
     console.log({ ...formData, images });
+    createItem({...formData,images});
+
     // Navigate to success page or back to dashboard
     navigate("/dashboard");
   };
