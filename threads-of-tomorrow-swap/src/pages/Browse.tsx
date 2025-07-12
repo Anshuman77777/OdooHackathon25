@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Search, Filter, MapPin, Grid, List } from "lucide-react";
 import { mockItems } from "@/apis/products";
+import MapModal from "@/components/MapModal";
 
 
 const categories = ["All", "Tops", "Bottoms", "Dresses", "Outerwear", "Shoes", "Accessories"];
@@ -26,11 +27,14 @@ export default function Browse() {
   const [selectedSize, setSelectedSize] = useState("All");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [sortBy, setSortBy] = useState("newest");
-
+  const [isOpen,setIsOpen]=useState(false);
   const activeFiltersCount = [selectedCategory, selectedCondition, selectedSize].filter(f => f !== "All").length;
-
+  const openMap = ()=>{
+    setIsOpen(true);
+  }
   return (
     <div className="min-h-screen bg-background">
+      {isOpen&&<MapModal isOpen={isOpen} setIsOpen={setIsOpen}/>}
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -54,7 +58,7 @@ export default function Browse() {
                   className="pl-10"
                 />
               </div>
-              <Button variant="outline" className="lg:w-auto">
+              <Button variant="outline" className="lg:w-auto" onClick={openMap}>
                 <MapPin className="h-4 w-4 mr-2" />
                 Near Me
               </Button>
