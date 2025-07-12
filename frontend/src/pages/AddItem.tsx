@@ -112,11 +112,11 @@ export default function AddItem() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would submit the form data
     console.log({ ...formData, images });
-    createItem({...formData,images});
+   await createItem({...formData,images});
 
     // Navigate to success page or back to dashboard
     navigate("/dashboard");

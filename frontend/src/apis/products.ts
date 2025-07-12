@@ -1,3 +1,4 @@
+import axios from 'axios';
 export const  mockItems = [
   {
     id: "1",
@@ -73,7 +74,67 @@ export const  mockItems = [
   }
 ];
 
-export function createItem (item)
-{
+// POST   /api/items
+//   - Headers: Authorization: Bearer <token>
+//   - Content-Type: multipart/form-data
+//   - Fields:
+//       - title: string
+//       - description: string
+//       - category: string
+//       - type: string
+//       - size: string
+//       - condition: string
+//       - tags: comma-separated string (e.g., "blue,casual")
+//       - latitude: number (optional)
+//       - longitude: number (optional)
+//       - images: file(s)
 
+export async function createItem(item) {
+  const url = import.meta.env.VITE_BACKEND_URL + "api/items";
+
+  const {
+    title,
+    description,
+    category,
+    type,
+    size,
+    condition,
+    tags,
+    latitude,
+    longitude,
+    images,
+  } = item;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+       uploaderId:'',
+        age: 1,
+        title,
+        description,
+        category,
+        type,
+        size,
+        condition,
+        tags,
+        latitude,
+        longitude,
+        images,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Success:", data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
+
