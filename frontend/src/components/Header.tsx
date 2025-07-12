@@ -30,7 +30,7 @@ export function Header({ user }: HeaderProps) {
       <span className="text-lg font-bold text-primary-foreground">R</span>
     </div>
     <span className="text-xl font-bold text-foreground">ReWear</span>
-  </div>~
+  </div>
   <span className="text-xs text-muted-foreground tracking-wide ml-10">Reown Your Chic</span>
 </Link>
 
