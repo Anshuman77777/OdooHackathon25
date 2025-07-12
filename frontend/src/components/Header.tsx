@@ -10,6 +10,9 @@ interface HeaderProps {
     points: number;
   } | null;
 }
+<Link to="/how-it-works" className="text-sm text-muted-foreground hover:text-primary transition">
+  How It Works
+</Link>
 
 export function Header({ user }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
