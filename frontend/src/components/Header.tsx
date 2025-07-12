@@ -10,6 +10,9 @@ interface HeaderProps {
     points: number;
   } | null;
 }
+<Link to="/how-it-works" className="text-sm text-muted-foreground hover:text-primary transition">
+  How It Works
+</Link>
 
 export function Header({ user }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,12 +24,16 @@ export function Header({ user }: HeaderProps) {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-primary">
-            <span className="text-lg font-bold text-primary-foreground">R</span>
-          </div>
-          <span className="text-xl font-bold text-foreground">ReWear</span>
-        </Link>
+        <Link to="/" className="flex flex-col items-start space-y-0 leading-tight">
+  <div className="flex items-center space-x-2">
+    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-primary">
+      <span className="text-lg font-bold text-primary-foreground">R</span>
+    </div>
+    <span className="text-xl font-bold text-foreground">ReWear</span>
+  </div>
+  <span className="text-xs text-muted-foreground tracking-wide ml-10">Reown Your Chic</span>
+</Link>
+
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">

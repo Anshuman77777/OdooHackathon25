@@ -10,6 +10,8 @@ import ItemDetail from "./pages/ItemDetail";
 import Dashboard from "./pages/Dashboard";
 import AddItem from "./pages/AddItem";
 import Auth from "./pages/Auth";
+import HowItWorks from "./pages/HowItWorks";
+
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +39,8 @@ const App = () => {
             <Route path="/login" element={<Auth mode="login" />} />
             <Route path="/signup" element={<Auth mode="signup" />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/how-it-works" element={<HowItWorks />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

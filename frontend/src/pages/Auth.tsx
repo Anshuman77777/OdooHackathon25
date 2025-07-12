@@ -58,9 +58,13 @@ export default function Auth({ mode }: AuthProps) {
 
         <Card className="shadow-soft">
           <CardHeader className="text-center space-y-2">
-            <div className="mx-auto w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4">
-              <span className="text-xl font-bold text-primary-foreground">R</span>
-            </div>
+            <div className="flex flex-col items-center space-y-1 mb-4">
+  <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center">
+    <span className="text-xl font-bold text-primary-foreground">R</span>
+  </div>
+  <span className="text-xs text-muted-foreground tracking-wide">Reown Your Chic</span>
+</div>
+
             <CardTitle className="text-2xl">{title}</CardTitle>
             <p className="text-muted-foreground">{subtitle}</p>
           </CardHeader>
