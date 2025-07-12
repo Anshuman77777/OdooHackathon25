@@ -1,4 +1,4 @@
-import mongoose, { Document } from 'mongoose';
+import mongoose, { Document } from "mongoose";
 
 export interface IItem extends Document {
   title: string;
@@ -10,7 +10,9 @@ export interface IItem extends Document {
   tags: string[];
   images: string[];
   uploaderId: mongoose.Types.ObjectId;
-  status: 'available' | 'pending' | 'swapped' | 'removed';
+  status: "available" | "pending" | "swapped" | "removed";
+  latitude?: number;
+  longitude?: number;
   approved: boolean;
 }
 
@@ -24,11 +26,17 @@ const itemSchema = new mongoose.Schema<IItem>(
     condition: String,
     tags: [String],
     images: [String],
-    uploaderId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    status: { type: String, enum: ['available', 'pending', 'swapped', 'removed'], default: 'available' },
+    uploaderId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    status: {
+      type: String,
+      enum: ["available", "pending", "swapped", "removed"],
+      default: "available",
+    },
     approved: { type: Boolean, default: false },
+    latitude: Number,
+  longitude: Number,
   },
   { timestamps: true }
 );
 
-export default mongoose.model<IItem>('Item', itemSchema);
+export default mongoose.model<IItem>("Item", itemSchema);

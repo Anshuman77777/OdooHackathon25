@@ -1,0 +1,109 @@
+=========================
+ReWear API – Endpoint List
+=========================
+
+BASE URL: http://localhost:5000
+
+----------------------------------
+AUTHENTICATION
+----------------------------------
+POST   /api/auth/signup
+  - name: string
+  - email: string
+  - password: string
+
+POST   /api/auth/login
+  - email: string
+  - password: string
+
+
+----------------------------------
+USER
+----------------------------------
+GET    /api/users/me
+  - Headers: Authorization: Bearer <token>
+
+GET    /api/users
+  - Headers: Authorization: Bearer <admin token>
+
+
+----------------------------------
+ITEMS
+----------------------------------
+GET    /api/items
+  - Public – Get all approved items
+
+GET    /api/items/my
+  - Headers: Authorization: Bearer <token>
+  - Get all items uploaded by current user
+
+GET    /api/items/:id
+  - :id = Item ID (string)
+
+POST   /api/items
+  - Headers: Authorization: Bearer <token>
+  - Content-Type: multipart/form-data
+  - Fields:
+      - title: string
+      - description: string
+      - category: string
+      - type: string
+      - size: string
+      - condition: string
+      - tags: comma-separated string (e.g., "blue,casual")
+      - latitude: number (optional)
+      - longitude: number (optional)
+      - images: file(s)
+
+
+----------------------------------
+SWAPS
+----------------------------------
+GET    /api/swaps
+  - Headers: Authorization: Bearer <token>
+  - List of swaps involving user
+
+POST   /api/swaps
+  - Headers: Authorization: Bearer <token>
+  - Body:
+      - requesterItemId: string
+      - responderItemId: string
+      - responderId: string
+
+PUT    /api/swaps/:id/status
+  - Headers: Authorization: Bearer <token>
+  - Body:
+      - status: "accepted" | "rejected" | "completed"
+
+
+----------------------------------
+REDEMPTION
+----------------------------------
+POST   /api/redeem
+  - Headers: Authorization: Bearer <token>
+  - Body:
+      - itemId: string
+
+GET    /api/redeem
+  - Headers: Authorization: Bearer <token>
+  - List of all user redemptions
+
+
+----------------------------------
+ADMIN
+----------------------------------
+GET    /api/admin/items/pending
+  - Headers: Authorization: Bearer <admin token>
+  - List of all unapproved items
+
+PUT    /api/admin/items/:id/approve
+  - Headers: Authorization: Bearer <admin token>
+
+PUT    /api/admin/items/:id/reject
+  - Headers: Authorization: Bearer <admin token>
+
+=========================
+Token Notes:
+- All protected routes require: Authorization: Bearer <JWT token>
+- Admin-only routes require role: 'admin'
+=========================
