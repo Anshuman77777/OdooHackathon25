@@ -116,7 +116,7 @@ export default function AddItem() {
     e.preventDefault();
     // Here you would submit the form data
     console.log({ ...formData, images });
-   await createItem({...formData,images});
+   await createItem(formData);
 
     // Navigate to success page or back to dashboard
     navigate("/dashboard");

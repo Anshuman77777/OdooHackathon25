@@ -4,7 +4,8 @@ import Item from '../models/Item';
 export const createItem = async (req: Request, res: Response) => {
   try {
     const files = req.files as Express.Multer.File[];
-    const imagePaths = files.map(file => `/uploads/${file.filename}`);
+    var imagePaths;
+   if(files){  imagePaths = files.map(file => `/uploads/${file.filename}`)}
 
     const newItem = await Item.create({
       ...req.body,
